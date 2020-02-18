@@ -1,0 +1,11 @@
+/Users/jeff/DockerCourse/docker-dotnet/bin/Debug/netcoreapp3.1/docker-dotnet
+/Users/jeff/DockerCourse/docker-dotnet/bin/Debug/netcoreapp3.1/docker-dotnet.deps.json
+/Users/jeff/DockerCourse/docker-dotnet/bin/Debug/netcoreapp3.1/docker-dotnet.runtimeconfig.json
+/Users/jeff/DockerCourse/docker-dotnet/bin/Debug/netcoreapp3.1/docker-dotnet.runtimeconfig.dev.json
+/Users/jeff/DockerCourse/docker-dotnet/bin/Debug/netcoreapp3.1/docker-dotnet.dll
+/Users/jeff/DockerCourse/docker-dotnet/bin/Debug/netcoreapp3.1/docker-dotnet.pdb
+/Users/jeff/DockerCourse/docker-dotnet/obj/Debug/netcoreapp3.1/docker-dotnet.csprojAssemblyReference.cache
+/Users/jeff/DockerCourse/docker-dotnet/obj/Debug/netcoreapp3.1/docker-dotnet.AssemblyInfoInputs.cache
+/Users/jeff/DockerCourse/docker-dotnet/obj/Debug/netcoreapp3.1/docker-dotnet.AssemblyInfo.cs
+/Users/jeff/DockerCourse/docker-dotnet/obj/Debug/netcoreapp3.1/docker-dotnet.dll
+/Users/jeff/DockerCourse/docker-dotnet/obj/Debug/netcoreapp3.1/docker-dotnet.pdb
