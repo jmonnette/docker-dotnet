@@ -6,4 +6,11 @@ node {
         sh "docker build -t test:B${BUILD_NUMBER} -f dockerfile ."
     stage 'Test'
         sh "docker run --rm test:B${BUILD_NUMBER}"
+
+    stage('sonar-scanner') {
+      def sonarqubeScannerHome = tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+      withCredentials([string(credentialsId: 'sonar', variable: 'sonarLogin')]) {
+        sh "${sonarqubeScannerHome}/bin/sonar-scanner -e -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=${sonarLogin} -Dsonar.projectName=dotnet -Dsonar.projectVersion=${env.BUILD_NUMBER} -Dsonar.projectKey=dotnet -Dsonar.sources=."
+      }
+    }
 }
