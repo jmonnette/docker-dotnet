@@ -13,7 +13,7 @@ node {
         sh "${sonarqubeScannerHome}/bin/sonar-scanner -e -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=${sonarLogin} -Dsonar.projectName=dotnet -Dsonar.projectVersion=${env.BUILD_NUMBER} -Dsonar.projectKey=dotnet -Dsonar.sources=."
       }
 
-    stage 'Publish' {
+    stage('Publish') {
         sh "docker image tag test:B${BUILD_NUMBER} jmonnette/test:B${BUILD_NUMBER}"
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
           sh "docker login -u $USERNAME -p $PASSWORD"
