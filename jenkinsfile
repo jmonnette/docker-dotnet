@@ -3,14 +3,22 @@ node {
     stage 'Checkout'
         checkout scm
     stage 'Build'
-        sh "docker build -t test:B${BUILD_NUMBER} -f dockerfile ."
+        sh "docker image build -t test:B${BUILD_NUMBER} -f dockerfile ."
     stage 'Test'
-        sh "docker run --rm test:B${BUILD_NUMBER}"
+        sh "docker container run --rm test:B${BUILD_NUMBER}"
 
     stage('sonar-scanner') {
       def sonarqubeScannerHome = tool name: 'sonar', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
       withCredentials([string(credentialsId: 'sonar', variable: 'sonarLogin')]) {
         sh "${sonarqubeScannerHome}/bin/sonar-scanner -e -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=${sonarLogin} -Dsonar.projectName=dotnet -Dsonar.projectVersion=${env.BUILD_NUMBER} -Dsonar.projectKey=dotnet -Dsonar.sources=."
+      }
+
+    stage 'Publish' {
+        sh "docker image tag test:B${BUILD_NUMBER} jmonnette/test:B${BUILD_NUMBER}"
+        withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+          sh "docker login -u $USERNAME -p $PASSWORD"
+          sh "docker push jmonnette/test:B${BUILD_NUMBER}"
+        }
       }
     }
 }
